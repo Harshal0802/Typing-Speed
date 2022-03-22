@@ -1,0 +1,33 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
+body{
+    background-color: #79e78f;
+}
+
+.mainDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+}
+.content{
+    text-align: center;
+}
+
+.txt{
+    font-weight: 700;
+}
+
+#text{
+    font-size: 20px;
+    width: 80%;
+}
+
+.text-typed{
+    border: 15px solid rgb(59, 38, 9);
+}
