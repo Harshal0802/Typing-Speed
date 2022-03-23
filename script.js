@@ -20,26 +20,58 @@ const SetofWords= [
     "   Being human makes us susceptible to the onset of feelings. The role of these emotions varies. Some of them are useful while others may be harmful. The use of social media for self-expression has reached a point that it makes us feel we can say anything. This begins when we see people expressing anything and everything that come to mind."
     ];
 
-const massage = document.getElementById("msg");
+
+
+const message = document.getElementById("msg");
 const text = document.getElementById("text");
 const button = document.getElementById("start-btn");
 const result = document.getElementById("result");
 let startTime, endTime;
+text.disabled = true;
+
 
 const TypingStart = () => {
     let ranIndex = Math.floor(Math.random()*SetofWords.length);
     console.log(ranIndex);
-    massage.innerText = SetofWords[ranIndex];
+    message.innerText = SetofWords[ranIndex];
     let date = new Date();
     startTime = date.getTime();
     button.innerText = "Done";
 }
 
+
+
 const endTyping = () => {
     let date = new Date();
     endTime = date.getTime();
     let totalTime = ((endTime - startTime)/ 1000);
-    console.log(totalTime);
+    console.log("Total time taken =", totalTime);
+    let totalWord = message.innerText.split(" ").length;
+    console.log("Total Words are =", totalWord);
+    if(text.value.trim().length>0)
+    {
+        var wordCount = text.value.trim().split(" ").length;
+        console.log("wordCount =", wordCount);
+    }else{
+        var wordCount = 0;
+    }
+    let speed = Math.round((60/totalTime)*wordCount);
+    console.log("Speed is =",speed);
+    let checkWords = accuracy(text.value, message.innerText);
+    console.log(checkWords);
+}
+
+const accuracy = (str1, str2) => {
+    let word1 = str1.trim().split(" ");
+    let word2 = str2.trim().split(" ");
+    let count = 0;
+    word1.forEach((item, index) => {
+        if(item === word2[index])
+        {
+            count++;
+        }
+    });
+    return count;
 }
 
 button.addEventListener('click', function(){
@@ -48,7 +80,6 @@ button.addEventListener('click', function(){
     text.disabled = false;
     TypingStart();
    }else if(this.innerText == "Done"){
-    text.disabled = true;
     button.innerText = "Start";
     endTyping(); 
    }
