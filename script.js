@@ -59,6 +59,12 @@ const endTyping = () => {
     console.log("Speed is =",speed);
     let checkWords = accuracy(text.value, message.innerText);
     console.log(checkWords);
+    result.innerHTML = `
+        <h4>Speed : ${speed} WPM</h4>
+        <h4>Words Typed : ${wordCount}</h4>
+        <h4>Correct Words : ${checkWords}</h4>
+        <h4>Speed : ${Math.round((checkWords/wordCount)*100)}%</h4>
+    `;
 }
 
 const accuracy = (str1, str2) => {
@@ -77,9 +83,12 @@ const accuracy = (str1, str2) => {
 button.addEventListener('click', function(){
    if(this.innerText == "Start")
    {
+    $("textarea").val("");
+    $("#result").fadeOut();
     text.disabled = false;
     TypingStart();
    }else if(this.innerText == "Done"){
+    $("#result").fadeIn();
     button.innerText = "Start";
     endTyping(); 
    }
