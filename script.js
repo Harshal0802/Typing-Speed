@@ -58,12 +58,14 @@ const endTyping = () => {
     let speed = Math.round((60/totalTime)*wordCount);
     console.log("Speed is =",speed);
     let checkWords = accuracy(text.value, message.innerText);
+    let errorWords = wordCount - checkWords;
     console.log(checkWords);
     result.innerHTML = `
         <h4>Speed : ${speed} WPM</h4>
+        <h4>Accuracy : ${Math.round((checkWords/wordCount)*100)}%</h4>
         <h4>Words Typed : ${wordCount}</h4>
         <h4>Correct Words : ${checkWords}</h4>
-        <h4>Speed : ${Math.round((checkWords/wordCount)*100)}%</h4>
+        <h4>Error Words : ${errorWords}</h4>
     `;
 }
 
